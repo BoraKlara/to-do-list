@@ -10,6 +10,8 @@ loadEventListeners();
 
 function loadEventListeners() {
   form.addEventListener("submit", addNewTask);
+
+  taskList.addEventListener("click", removeTask);
 }
 
 //
@@ -31,6 +33,7 @@ function addNewTask(e) {
   link.className = "delete-item secondary-content";
   // add icon
   link.innerHTML = '<i class="far fa-trash-alt"></i>';
+
   // append link to li
   li.appendChild(link);
 
@@ -40,4 +43,14 @@ function addNewTask(e) {
   // CLear input
   taskInput.value = "";
   e.preventDefault();
+}
+
+// Remove and FIlter tasks
+
+function removeTask(e) {
+  if (e.target.parentElement.classList.contains("delete-item")) {
+    if (confirm("Are you sure you want to delete it? ")) {
+      e.target.parentElement.parentElement.remove();
+    }
+  }
 }
